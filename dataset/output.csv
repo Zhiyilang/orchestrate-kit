@@ -1,0 +1,111 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,notify,payment,Time-sensitive payment/order update.,0.88,message_0220;message_0407
+msg_091,digest,unknown,No strong signal; safe to defer.,0.6,message_0025;message_0199
+msg_090,notify,personal,Direct personal message asking for response.,0.85,message_0213;message_0202
+msg_048,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0237;message_0151
+msg_040,notify,personal,Direct personal message asking for response.,0.85,message_0080;message_0123
+msg_075,notify,business_update,Verified business update.,0.83,message_0206;message_0205
+msg_005,digest,event,Media inside a group; safe to defer.,0.7,message_0231;message_0232
+msg_104,digest,unknown,No strong signal; safe to defer.,0.6,message_0231;message_0232
+msg_069,digest,greeting,Casual greeting; read later.,0.8,message_0080;message_0123
+msg_107,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_070,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_003,notify,payment,Time-sensitive payment/order update.,0.88,message_0105;message_0400
+msg_099,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0218;message_0003
+msg_008,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0296;message_0412
+msg_092,notify,payment,Time-sensitive payment/order update.,0.88,none
+msg_060,digest,event,Media inside a group; safe to defer.,0.7,message_0175;message_0404
+msg_004,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0064;message_0047
+msg_030,digest,event,Media inside a group; safe to defer.,0.7,message_0231;message_0232
+msg_045,notify,event,Time-sensitive or administrative group notice.,0.84,message_0378;message_0146
+msg_052,notify,payment,Time-sensitive payment/order update.,0.88,message_0159;message_0207
+msg_009,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0253;message_0274
+msg_071,digest,event,Group info; not urgent.,0.75,message_0166;message_0393
+msg_016,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0213;message_0202
+msg_065,notify,business_update,Media from a verified business; treat as update.,0.8,message_0351;message_0187
+msg_038,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0080;message_0123
+msg_086,notify,business_update,Media from a verified business; treat as update.,0.8,message_0299;message_0272
+msg_014,mute,promotion,Unsolicited promotion; muted.,0.8,message_0317;message_0258
+msg_094,mute,promotion,Unsolicited promotion; muted.,0.8,none
+msg_029,digest,event,Media inside a group; safe to defer.,0.7,message_0231;message_0232
+msg_105,digest,forward,Forwarded chain; low priority.,0.7,message_0080;message_0123
+msg_002,notify,payment,Time-sensitive payment/order update.,0.88,message_0218;message_0003
+msg_010,notify,business_update,Verified business update.,0.83,message_0311;message_0011
+msg_078,digest,forward,Forwarded chain; low priority.,0.7,message_0025;message_0199
+msg_013,mute,promotion,Unsolicited promotion; muted.,0.8,message_0231;message_0232
+msg_018,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_044,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_032,digest,event,Group info; not urgent.,0.75,message_0253;message_0274
+msg_106,digest,unknown,No strong signal; safe to defer.,0.6,message_0253;message_0274
+msg_006,notify,event,Time-sensitive or administrative group notice.,0.84,message_0029;message_0129
+msg_109,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0237;message_0151
+msg_108,notify,business_update,Verified business update.,0.83,message_0094;message_0236
+msg_019,notify,business_update,Verified business update.,0.83,message_0094;message_0236
+msg_088,digest,event,Media inside a group; safe to defer.,0.7,message_0231;message_0232
+msg_056,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0166;message_0393
+msg_027,notify,business_update,Media from a verified business; treat as update.,0.8,message_0299;message_0272
+msg_050,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0155;message_0246
+msg_083,digest,event,Media inside a group; safe to defer.,0.7,message_0218;message_0003
+msg_063,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_033,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0166;message_0393
+msg_061,digest,greeting,Casual greeting; read later.,0.8,message_0080;message_0123
+msg_020,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_017,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0025;message_0199
+msg_058,notify,personal,Direct personal message asking for response.,0.85,message_0080;message_0123
+msg_026,notify,payment,Time-sensitive payment/order update.,0.88,message_0107;message_0028
+msg_047,notify,event,Time-sensitive or administrative group notice.,0.84,message_0029;message_0129
+msg_046,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0166;message_0393
+msg_042,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0029;message_0129
+msg_079,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_098,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0166;message_0393
+msg_037,digest,event,Group info; not urgent.,0.75,message_0029;message_0129
+msg_007,notify,event,Time-sensitive or administrative group notice.,0.84,message_0029;message_0129
+msg_085,notify,business_update,Media from a verified business; treat as update.,0.8,message_0221
+msg_001,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0029;message_0129
+msg_021,notify,payment,Time-sensitive payment/order update.,0.88,message_0029;message_0129
+msg_028,notify,business_update,Media from a verified business; treat as update.,0.8,message_0299;message_0272
+msg_012,notify,personal,Direct personal message asking for response.,0.85,message_0080;message_0123
+msg_064,digest,event,Media inside a group; safe to defer.,0.7,message_0213;message_0202
+msg_103,digest,unknown,No strong signal; safe to defer.,0.6,message_0231;message_0232
+msg_031,digest,event,Media inside a group; safe to defer.,0.7,message_0218;message_0003
+msg_057,notify,event,Time-sensitive or administrative group notice.,0.84,message_0218;message_0003
+msg_087,digest,event,Media inside a group; safe to defer.,0.7,message_0223;message_0392
+msg_067,notify,payment,Time-sensitive payment/order update.,0.88,message_0029;message_0129
+msg_039,notify,event,Time-sensitive or administrative group notice.,0.84,message_0175;message_0404
+msg_082,digest,event,Media inside a group; safe to defer.,0.7,message_0218;message_0003
+msg_066,notify,business_update,Media from a verified business; treat as update.,0.8,message_0351;message_0187
+msg_049,notify,business_update,Media from a verified business; treat as update.,0.8,message_0153;message_0291
+msg_015,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_051,mute,promotion,Unsolicited promotion; muted.,0.8,message_0157;message_0257
+msg_097,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0166;message_0393
+msg_089,digest,unknown,No strong signal; safe to defer.,0.6,message_0025;message_0199
+msg_053,digest,event,Media inside a group; safe to defer.,0.7,message_0253;message_0274
+msg_059,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_024,mute,promotion,Unsolicited promotion; muted.,0.8,message_0157;message_0257
+msg_072,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_036,notify,business_update,Verified business update.,0.83,message_0127;message_0128
+msg_076,notify,payment,Time-sensitive payment/order update.,0.88,message_0159;message_0207
+msg_055,notify,personal,Direct personal message asking for response.,0.85,message_0166;message_0393
+msg_102,digest,unknown,No strong signal; safe to defer.,0.6,message_0218;message_0003
+msg_080,notify,event,Time-sensitive or administrative group notice.,0.84,message_0029;message_0129
+msg_093,mute,scam,Likely scam/phishing pattern detected.,0.92,none
+msg_034,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0080;message_0123
+msg_035,notify,business_update,Verified business update.,0.83,message_0273;message_0302
+msg_101,digest,unknown,No strong signal; safe to defer.,0.6,message_0253;message_0274
+msg_041,notify,event,Event/appointment the user likely needs.,0.84,message_0138;message_0137
+msg_011,digest,greeting,Casual greeting; read later.,0.8,message_0080;message_0123
+msg_110,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0025;message_0199
+msg_095,notify,payment,Time-sensitive payment/order update.,0.88,message_0213;message_0202
+msg_074,digest,event,Media inside a group; safe to defer.,0.7,message_0223;message_0392
+msg_073,mute,scam,Likely scam/phishing pattern detected.,0.92,message_0213;message_0202
+msg_054,mute,promotion,Unsolicited promotion; muted.,0.8,message_0223;message_0392
+msg_068,digest,event,Group info; not urgent.,0.75,message_0253;message_0274
+msg_100,notify,payment,Time-sensitive payment/order update.,0.88,message_0218;message_0003
+msg_062,digest,event,Media inside a group; safe to defer.,0.7,message_0029;message_0129
+msg_096,digest,unknown,No strong signal; safe to defer.,0.6,message_0025;message_0199
+msg_043,notify,urgent,Urgent action or deadline mentioned.,0.86,message_0029;message_0129
+msg_077,digest,event,Media inside a group; safe to defer.,0.7,message_0175;message_0404
+msg_081,digest,event,Media inside a group; safe to defer.,0.7,message_0175;message_0404
+msg_025,notify,payment,Time-sensitive payment/order update.,0.88,message_0105;message_0400
+msg_084,notify,business_update,Media from a verified business; treat as update.,0.8,message_0220;message_0407
+msg_022,notify,payment,Time-sensitive payment/order update.,0.88,message_0099;message_0100
