@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gates:
+    name: python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Assertion suite: loader / verifier / agent / log_utils wiring.
+      - name: Assertion suite
+        run: python eval.py
+
+      # A hostile-locale run is the historical failure mode on Chinese Windows
+      # (cp936 vs UTF-8 subprocess decoding). Keep proving it stays fixed.
+      - name: Hostile locale (no PYTHONUTF8, C locale)
+        env:
+          PYTHONUTF8: ""
+          LC_ALL: C
+        run: python eval.py
+
+      # End-to-end: actually produce the submission file and check its shape.
+      - name: End-to-end solve
+        run: |
+          python solve.py
+          python - <<'PY'
+          import csv
+          rows = list(csv.DictReader(open("dataset/output.csv", encoding="utf-8")))
+          assert len(rows) >= 30, f"only {len(rows)} rows"
+          cols = {"message_id", "action", "message_type", "reason",
+                  "confidence", "evidence_message_ids"}
+          assert cols.issubset(set(rows[0])), rows[0].keys()
+          print("output.csv rows:", len(rows), "columns ok")
+          PY
