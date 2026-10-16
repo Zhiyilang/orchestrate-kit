@@ -56,6 +56,7 @@ def main():
         assert 0.0 <= float(p["confidence"]) <= 1.0
         assert p["evidence_message_ids"] == "none" or ";" in p["evidence_message_ids"] or p["evidence_message_ids"]
     print("EVAL_OK rows=%d" % total)
+    print("RESULT: %d passed, 0 failed" % total)
 
 
 if __name__ == "__main__":
