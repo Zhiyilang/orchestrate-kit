@@ -7,6 +7,7 @@
     python eval.py                  # 正常
     env -u PYTHONUTF8 python eval.py  # 敌意 locale（cp936）也应 rc=0
 """
+import json
 import os
 import sys
 
@@ -55,6 +56,56 @@ def main():
         assert p["message_type"] in ALLOWED_TYPES
         assert 0.0 <= float(p["confidence"]) <= 1.0
         assert p["evidence_message_ids"] == "none" or ";" in p["evidence_message_ids"] or p["evidence_message_ids"]
+
+    # LLM 层鲁棒性断言（离线，不打网络）：
+    # 1) 非 OpenAI 端点 400 时退一格重试（去掉 response_format）
+    # 2) 混排文本里的 JSON 可被抢救
+    from orchestrate_kit import agent as _agent
+    assert _agent._salvage_json('noise {"action": "mute"} tail') == {"action": "mute"}
+    assert _agent._salvage_json("no json here") is None
+    assert _agent._salvage_json('{"message_type": "scam"}') is None  # 无 action 不算
+
+    calls = []
+
+    class _Resp:
+        def __init__(self, payload):
+            self._payload = payload
+
+        def read(self):
+            return json.dumps(self._payload).encode("utf-8")
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    class _Err400(Exception):
+        def __init__(self, payload):
+            super().__init__("400 Bad Request")
+            self._payload = payload
+
+        def read(self):
+            return json.dumps(self._payload).encode("utf-8")
+
+    def _fake_urlopen(req, timeout=0):
+        body = json.loads(req.data.decode("utf-8"))
+        calls.append(body)
+        if "response_format" in body:
+            raise _Err400({"error": {"message": "response_format not supported"}})
+        return _Resp({"choices": [{"message": {"content": json.dumps(
+            {"action": "notify", "message_type": "urgent", "reason": "ok", "confidence": 0.9})}}]})
+
+    _orig = _agent.urllib.request.urlopen
+    _agent.urllib.request.urlopen = _fake_urlopen
+    try:
+        out = _agent._call_llm("sys", "prompt", "fake-key", "https://example.invalid/v1")
+    finally:
+        _agent.urllib.request.urlopen = _orig
+    assert out and out.get("action") == "notify", out
+    assert len(calls) == 2 and "response_format" in calls[0] and "response_format" not in calls[1], calls
+    assert _agent._call_llm("sys", "prompt", "", None) is None  # 无 key 直接返回
+
     print("EVAL_OK rows=%d" % total)
     print("RESULT: %d passed, 0 failed" % total)
 

@@ -19,8 +19,11 @@ cp problems/whatsapp_router.py problems/<新题名>.py
 python solve.py
 
 # ③ 三连质检（见下方第 3 节命令）
-# ④ 有条件再切 LLM（需要 OPENAI_API_KEY；没 key 就打磨离线启发式，别空等）
-ORC_MODE=llm python solve.py
+# ④ 有条件再切 LLM——任何 OpenAI 兼容 key 都行（不必是 OpenAI 官方！）：
+#    没有 OPENAI_API_KEY 就用你现有的 MiMo（OpenAI 兼容）：
+OPENAI_API_KEY=<你的MiMo key> OPENAI_BASE_URL=https://token-plan-cn.xiaomimimo.com/v1 ORC_MODEL=<MiMo模型名> ORC_MODE=llm python solve.py
+#    agent.py 已加固：端点不支持 response_format 会自动退一格重试（不会直接掉兜底）；
+#    调用失败照样自动回离线启发式。**先用 5 条消息对比两种模式输出差异再全量跑。**
 ```
 
 **为什么复制靶场**：本模式的判定骨架在八月真题上 **110/110 全覆盖**，八月题的

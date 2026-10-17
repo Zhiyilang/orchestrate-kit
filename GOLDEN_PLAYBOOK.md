@@ -84,9 +84,11 @@ print('type:  ', dict(Counter(r['message_type'] for r in out)))
 
 ```bash
 ORC_MODE=llm ORC_MODEL=<模型名> python solve.py
+# 自定义端点（如 MiMo，OpenAI 兼容）：
+OPENAI_API_KEY=<key> OPENAI_BASE_URL=https://token-plan-cn.xiaomimimo.com/v1 ORC_MODEL=<模型名> ORC_MODE=llm python solve.py
 ```
 
-LLM 失败自动退回启发式，不会开天窗。**先用 5 条消息对比两种模式的输出差异**，再决定全量跑哪个（或混合：LLM 跑高价值、启发式兜底）。
+LLM 失败自动退回启发式，不会开天窗。agent.py 已加固：端点不支持 `response_format` 时自动退一格重试（非 OpenAI 提供商常见 400），混排文本里的 JSON 会被抢救。**先用 5 条消息对比两种模式的输出差异**，再决定全量跑哪个（或混合：LLM 跑高价值、启发式兜底）。
 
 ---
 
