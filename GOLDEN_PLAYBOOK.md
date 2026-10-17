@@ -1,6 +1,6 @@
 # 开赛日黄金解题模式（Golden Playbook）
 
-> 本文件由 2026-10-17 八月真题（whatsapp_router）**完整实战演练**产出：全流程跑通 + 110/110 输出 + 8 类抽样质检。
+> 本文件由 2026-10-17 八月真题（whatsapp_router）**完整实战演练 + 夜间加固复跑**产出：全流程跑通 + 110/110 输出 + 8 类抽样质检。
 > 10-25 09:30 开赛拿到新题后，**按本文件第 1 节的顺序照做**，第 3 节的已知误判模式直接换进新 prompt。
 
 ---
@@ -10,8 +10,25 @@
 - 靶场：`problems/whatsapp_router.py`（八月真题同构练习场）
 - 数据集：`dataset/messages.csv` **真实记录 110 条**（注意：文件物理行 265 行是因为 message_text 含换行符，**永远用 csv 模块数记录，不要用 wc -l**）
 - 实战结果：`python solve.py` → `dataset/output.csv` **110/110 全覆盖、无缺失 message_id**
-- 分布：notify 52 / digest 32 / mute 26；type：event 27 / scam 20 / business_update 14 / payment 13 / urgent 12 / unknown 8 / promotion 6 / personal 5 / greeting 3 / forward 2
+- 分布（2026-10-17 夜间加固后实测）：action notify 43 / mute 37 / digest 30；type event 21 / promotion 16 / personal 14 / scam 11 / urgent 12 / forward 6 / business_update 7 / payment 7 / spam 7 / greeting 3 / unknown 6
+- **离线启发式对 30 条官方样例 ground truth：action 96.67% / type 96.67%**（2026-10-17 彩排实测；加固前为 50%/50%）
 - 引擎（loader/agent/verifier/solve）+ eval 30/30 未改动一行
+
+### 夜间加固修掉的九类模式缺陷（2026-10-17，开赛夜兜底水平 50%→96.67%）
+
+| # | 缺陷 | 修法 |
+|---|---|---|
+| 1 | "join"/"claim"/"off"/"now" 一词多义误判（"Can you join"=会议非促销；"claim details"=保险非诈骗） | PROMO/SCAM 改用短语模式（"join now"级、"claim your prize"级、"50% off"级） |
+| 2 | 否定语境误伤（"Nothing urgent"被判 urgent） | NEG_GUARD：命中词前 14 字符有否定词则不成立 |
+| 3 | 凭据钓鱼漏判（"Reply with the 6 digit login code"） | PHISH 新模式：登录/验证码短语 + 索取动作 |
+| 4 | 会议改期漏判（"prod review got pulled to 3"） | RESCHEDULE → notify/urgent |
+| 5 | 物流履约误判 payment（"order has been packed"） | ORDER_STATUS：商家语境→business_update |
+| 6 | 反馈邀评误判 notify（PVR "we'd love to hear"） | FEEDBACK → digest/business_update |
+| 7 | 反诈公告误判 scam（"never ask for OTP"） | ADVISORY 先于 SCAM |
+| 8 | 垃圾商家漏判（未验证+月举报23+群发1756） | _biz_spam 读 business_accounts.csv 画像 |
+| 9 | 同一转售帖不同用户同判（u_032 digest vs u_033 mute） | _user_dismissive 读 users.csv 参与画像分流；转发链 fwd>3→mute |
+
+> ⚠️ 唯一不可判：group 语音无转录（041/042 同上下文不同 gt）——真实赛题若有转写文本则此限制消失。
 
 ---
 
